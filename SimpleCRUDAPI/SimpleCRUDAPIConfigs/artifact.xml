@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="SimpleCRUDAPI_1" groupId="com.wso2.api" version="1" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/SimpleCRUDAPI_1.xml</file>
+    </artifact>
+    <artifact name="SimpleCRUDAPI_1_swagger" groupId="com.wso2.metadata" version="1" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/SimpleCRUDAPI_1_swagger.yaml</file>
+    </artifact>
+    <artifact name="SimpleCRUDAPI_1_metadata" groupId="com.wso2.metadata" version="1" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/SimpleCRUDAPI_1_metadata.yaml</file>
+    </artifact>
+</artifacts>

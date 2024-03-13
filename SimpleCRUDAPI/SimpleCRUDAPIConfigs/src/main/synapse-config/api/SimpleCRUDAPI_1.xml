@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/simplecrud" name="SimpleCRUDAPI" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" protocol="http" uri-template="/simplecrud/">
+        <inSequence>
+            <dataServiceCall serviceName="SimpleCRUDAPIDS">
+                <operations type="single">
+                    <operation name="GetAllEmployees"/>
+                </operations>
+                <source type="inline"/>
+                <target type="body"/>
+            </dataServiceCall>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

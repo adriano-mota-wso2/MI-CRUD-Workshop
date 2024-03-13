@@ -1,0 +1,11 @@
+---
+key: "SimpleCRUDAPI-1.0.0"
+name : "SimpleCRUDAPI"
+displayName : "SimpleCRUDAPI"
+description: "Sample API"
+version: "1.0.0"
+serviceUrl: "https://{MI_HOST}:{MI_PORT}/simplecrud"
+definitionType: "OAS3"
+securityType: "BASIC"
+mutualSSLEnabled: false
+apiId : "null"

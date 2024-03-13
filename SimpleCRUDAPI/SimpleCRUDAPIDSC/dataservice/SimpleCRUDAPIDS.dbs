@@ -1,0 +1,66 @@
+<data name="SimpleCRUDAPIDS" serviceNamespace="" serviceGroup="" transports="">
+  <description />
+  <config id="PostgresDataSource">
+    <property name="driverClassName">org.postgresql.Driver</property>
+    <property name="url">jdbc:postgresql://localhost:5432/Employees</property>
+    <property name="username">postgres</property>
+    <property name="password">mysecretpassword</property>
+  </config>
+  <resource method="GET" path="Employee" disableStreaming="true">
+    <description>Get All Employees Data</description>
+    <call-query href="GetAllEmployees" />
+  </resource>
+  <resource method="GET" path="Employee/{EmployeeNumber}" disableStreaming="true">
+    <description>Get Employee Data By ID</description>
+    <call-query href="GetAllEmployeesByID">
+      <with-param name="employeenumber" query-param="employeenumber" />
+    </call-query>
+  </resource>
+  <query id="GetAllEmployees" useConfig="PostgresDataSource">
+    <sql>select Employeenumber, FirstName, LastName, Email, Salary from Employees</sql>
+    <result outputType="json">
+{ "Employees":
+      {"Employee":[
+        {"EmployeeNumber":"$EmployeeNumber(type:integer)",                       
+         "Details": {
+          "FirstName":"$FirstName",
+          "LastName":"$LastName",
+          "Email":"$Email",
+          "Salary":"$Salary"
+         }
+        }                 
+      ]
+    }           
+}
+</result>
+  </query>
+  <query id="GetAllEmployeesByID" useConfig="PostgresDataSource">
+    <sql>select FirstName, LastName, Email, Salary from Employees where employeenumber =: EmployeeNumber</sql>
+    <param name="employeenumber" paramType="SCALAR" sqlType="STRING" />
+    <result outputType="json">
+{ "Employees":
+      {"Employee":[
+        {"EmployeeNumber":"$EmployeeNumber(type:integer)",                       
+         "Details": {
+          "FirstName":"$FirstName",
+          "LastName":"$LastName",
+          "Email":"$Email",
+          "Salary":"$Salary"
+         }
+        }                 
+      ]
+    }           
+}
+</result>
+  </query>
+  <operation name="GetAllEmployees">
+    <description>Get All Employees Data</description>
+    <call-query href="GetAllEmployees" />
+  </operation>
+  <operation name="GetEmployeeById">
+    <description>Get Employee by ID</description>
+    <call-query href="GetAllEmployeesByID">
+      <with-param name="employeenumber" query-param="employeenumber" />
+    </call-query>
+  </operation>
+</data>
