@@ -9,6 +9,7 @@
   <name>SimpleCRUDAPI</name>
   <description>SimpleCRUDAPI</description>
   <modules>
+    <module>SimpleCRUDAPIDataSourceConfig</module>
     <module>SimpleCRUDAPIDSC</module>
   </modules>
   <scm>
