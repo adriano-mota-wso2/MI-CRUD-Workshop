@@ -6,14 +6,33 @@
     <property name="username">postgres</property>
     <property name="password">mysecretpassword</property>
   </config>
-  <resource method="GET" path="/Employees">
+  <resource method="GET" path="Employees">
     <description>Get All Employees Data</description>
     <call-query href="GetAllEmployees" />
   </resource>
-  <resource method="GET" path="/Employees/{Employeenumber}">
+  <resource method="GET" path="Employees/{Employeenumber}">
     <description>Get Employee By ID</description>
     <call-query href="GetAllEmployeeByID">
       <with-param name="Employeenumber" query-param="Employeenumber" />
+    </call-query>
+  </resource>
+  <resource method="POST" path="Employees">
+    <description>Save Employee Information</description>
+    <call-query href="SetEmployee">
+      <with-param name="FirstName" query-param="FirstName" />
+      <with-param name="LastName" query-param="LastName" />
+      <with-param name="Email" query-param="Email" />
+      <with-param name="Salary" query-param="Salary" />
+    </call-query>
+  </resource>
+  <resource method="PUT" path="Employees">
+    <description>Update Employee Information</description>
+    <call-query href="UpdateEmployee">
+         <with-param name="LastName" query-param="LastName"/>
+         <with-param name="FirstName" query-param="FirstName"/>
+         <with-param name="Email" query-param="Email"/>
+         <with-param name="Salary" query-param="Salary"/>
+         <with-param name="EmployeeNumber" query-param="EmployeeNumber"/>
     </call-query>
   </resource>
   <query id="GetAllEmployees" useConfig="PostgresDataSource">
@@ -56,13 +75,22 @@
     <param name="Email" paramType="SCALAR" sqlType="STRING" />
     <param name="Salary" paramType="SCALAR" sqlType="STRING" />
   </query>
-  <resource method="POST" path="Employees">
-    <description>Save Employee Information</description>
-    <call-query href="SetEmployee">
-        <with-param name="FirstName" query-param="FirstName"/>
-        <with-param name="LastName" query-param="LastName"/>
-        <with-param name="Email" query-param="Email"/>
-        <with-param name="Salary" query-param="Salary"/>
+  <query id="UpdateEmployee" useConfig="PostgresDataSource">
+    <sql>UPDATE Employees set LastName=:LastName, FirstName=:FirstName, Email=:Email, Salary=:Salary where EmployeeNumber::text=:EmployeeNumber</sql>
+      <param name="LastName" sqlType="STRING"/>
+      <param name="FirstName" sqlType="STRING"/>
+      <param name="Email" sqlType="STRING"/>
+      <param name="Salary" sqlType="STRING"/>
+      <param name="EmployeeNumber" sqlType="STRING"/>
+  </query>
+  <query id="DeleteEmployee" useConfig="PostgresDataSource">
+    <sql>DELETE FROM Employees WHERE Employeenumber=:Employeenumber</sql>
+    <param name="Employeenumber" sqlType="INTEGER" />
+  </query>
+  <resource method="DELETE" path="/Employees/{Employeenumber}">
+    <description>Remove Employee Data</description>
+    <call-query href="DeleteEmployee">
+      <with-param name="Employeenumber" query-param="Employeenumber" />
     </call-query>
   </resource>
 </data>
