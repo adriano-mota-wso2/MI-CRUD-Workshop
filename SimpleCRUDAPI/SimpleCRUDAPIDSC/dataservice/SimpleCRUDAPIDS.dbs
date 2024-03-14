@@ -16,10 +16,6 @@
       <with-param name="Employeenumber" query-param="Employeenumber" />
     </call-query>
   </resource>
-  <resource method="POST" path="/Employees" returnRequestStatus="true">
-    <description>Save New Employee</description>
-    <call-query href="SetEmployee" />
-  </resource>
   <query id="GetAllEmployees" useConfig="PostgresDataSource">
     <sql>select Employeenumber, FirstName, LastName, Email, Salary from Employees</sql>
     <result outputType="json">{
@@ -59,18 +55,14 @@
     <param name="LastName" paramType="SCALAR" sqlType="STRING" />
     <param name="Email" paramType="SCALAR" sqlType="STRING" />
     <param name="Salary" paramType="SCALAR" sqlType="STRING" />
-    <result outputType="json">{
-   "Employees":{
-      "Employee":[
-         {
-            "EmployeeNumber":"$EmployeeNumber",
-            "FirstName":"$FirstName",
-            "LastName":"$LastName",
-            "Email":"$Email",
-            "Salary":"$Salary"
-         }
-      ]
-   }
-}</result>
   </query>
+  <resource method="POST" path="Employees">
+    <description>Save Employee Information</description>
+    <call-query href="SetEmployee">
+        <with-param name="FirstName" query-param="FirstName"/>
+        <with-param name="LastName" query-param="LastName"/>
+        <with-param name="Email" query-param="Email"/>
+        <with-param name="Salary" query-param="Salary"/>
+    </call-query>
+  </resource>
 </data>
