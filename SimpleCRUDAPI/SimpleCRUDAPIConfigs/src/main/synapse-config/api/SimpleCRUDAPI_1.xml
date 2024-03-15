@@ -9,6 +9,8 @@
                 <source type="inline"/>
                 <target type="body"/>
             </dataServiceCall>
+            <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+            <property name="ContentType" scope="axis2" type="STRING" value="application/json-patch+json"/>
             <respond/>
         </inSequence>
         <outSequence/>
