@@ -1,40 +1,5 @@
-<data name="SimpleCRUDAPIDS" serviceNamespace="" serviceGroup="" transports="" disableStreaming="true">
+<data name="SimpleCRUDAPIDS" serviceNamespace="" serviceGroup="" transports="http" disableStreaming="true" serviceStatus="active">
   <description />
-  <config id="PostgresDataSource">
-    <property name="driverClassName">org.postgresql.Driver</property>
-    <property name="url">jdbc:postgresql://localhost:5432/Employees</property>
-    <property name="username">postgres</property>
-    <property name="password">mysecretpassword</property>
-  </config>
-  <resource method="GET" path="Employees">
-    <description>Get All Employees Data</description>
-    <call-query href="GetAllEmployees" />
-  </resource>
-  <resource method="GET" path="Employees/{Employeenumber}">
-    <description>Get Employee By ID</description>
-    <call-query href="GetAllEmployeeByID">
-      <with-param name="Employeenumber" query-param="Employeenumber" />
-    </call-query>
-  </resource>
-  <resource method="POST" path="Employees">
-    <description>Save Employee Information</description>
-    <call-query href="SetEmployee">
-      <with-param name="FirstName" query-param="FirstName" />
-      <with-param name="LastName" query-param="LastName" />
-      <with-param name="Email" query-param="Email" />
-      <with-param name="Salary" query-param="Salary" />
-    </call-query>
-  </resource>
-  <resource method="PUT" path="Employees">
-    <description>Update Employee Information</description>
-    <call-query href="UpdateEmployee">
-      <with-param name="LastName" query-param="LastName" />
-      <with-param name="FirstName" query-param="FirstName" />
-      <with-param name="Email" query-param="Email" />
-      <with-param name="Salary" query-param="Salary" />
-      <with-param name="EmployeeNumber" query-param="EmployeeNumber" />
-    </call-query>
-  </resource>
   <query id="GetAllEmployees" useConfig="PostgresDataSource">
     <sql>select Employeenumber, FirstName, LastName, Email, Salary from Employees</sql>
     <result outputType="json">{
@@ -87,13 +52,59 @@
     <sql>DELETE FROM Employees WHERE Employeenumber=:Employeenumber</sql>
     <param name="Employeenumber" sqlType="INTEGER" />
   </query>
+  <resource method="GET" path="Employees">
+    <description>Get All Employees Data</description>
+    <call-query href="GetAllEmployees" />
+  </resource>
+  <resource method="GET" path="Employees/{Employeenumber}">
+    <description>Get Employee By ID</description>
+    <call-query href="GetAllEmployeeByID">
+      <with-param name="Employeenumber" query-param="Employeenumber" />
+    </call-query>
+  </resource>
+  <resource method="POST" path="Employees" returnRequestStatus="true">
+    <description>Save Employee Information</description>
+    <call-query href="SetEmployee">
+      <with-param name="FirstName" query-param="FirstName" />
+      <with-param name="LastName" query-param="LastName" />
+      <with-param name="Email" query-param="Email" />
+      <with-param name="Salary" query-param="Salary" />
+    </call-query>
+  </resource>
+  <resource method="PUT" path="Employees">
+    <description>Update Employee Information</description>
+    <call-query href="UpdateEmployee">
+      <with-param name="LastName" query-param="LastName" />
+      <with-param name="FirstName" query-param="FirstName" />
+      <with-param name="Email" query-param="Email" />
+      <with-param name="Salary" query-param="Salary" />
+      <with-param name="EmployeeNumber" query-param="EmployeeNumber" />
+    </call-query>
+  </resource>
   <resource method="DELETE" path="/Employees/{Employeenumber}">
     <description>Remove Employee Data</description>
     <call-query href="DeleteEmployee">
       <with-param name="Employeenumber" query-param="Employeenumber" />
     </call-query>
   </resource>
-  <operation name="GetAllEmployees">
+  <!-- 
+  <config id="PostgresDataSource">
+    <property name="driverClassName">org.postgresql.Driver</property>
+    <property name="url">jdbc:postgresql://localhost:5432/Employees</property>
+    <property name="username">postgres</property>
+    <property name="password">mysecretpassword</property>
+  </config>
+   -->
+    <config id="PostgresDataSource">
+    <property name="driverClassName">org.postgresql.Driver</property>
+    <property name="url">jdbc:postgresql://pg-f4990835-c77e-493a-b85f-bdf9acf638c6-amlabdb265238133-choreo.i.aivencloud.com:23209/defaultdb</property>
+    <property name="username">avnadmin</property>
+    <property name="password">AVNS_N8XL96EmyD5wmJyLRWM</property>
+  </config>
+  
+  
+  
+  <operation name="GetAllEmployees" disableStreaming="true">
     <description>Get All Employees Data</description>
     <call-query href="GetAllEmployees" />
   </operation>
