@@ -87,21 +87,21 @@
       <with-param name="Employeenumber" query-param="Employeenumber" />
     </call-query>
   </resource>
-  <!-- 
+  
   <config id="PostgresDataSource">
     <property name="driverClassName">org.postgresql.Driver</property>
     <property name="url">jdbc:postgresql://localhost:5432/Employees</property>
     <property name="username">postgres</property>
     <property name="password">mysecretpassword</property>
   </config>
-   -->
+   <!-- 
     <config id="PostgresDataSource">
     <property name="driverClassName">org.postgresql.Driver</property>
     <property name="url">jdbc:postgresql://pg-f4990835-c77e-493a-b85f-bdf9acf638c6-amlabdb265238133-choreo.i.aivencloud.com:23209/defaultdb</property>
     <property name="username">avnadmin</property>
     <property name="password">AVNS_N8XL96EmyD5wmJyLRWM</property>
   </config>
-  
+   -->
   
   
   <operation name="GetAllEmployees" disableStreaming="true">
